@@ -21136,7 +21136,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Hello!'
+	        'Hello from React!'
 	      );
 	    }
 	  }]);
