@@ -18,16 +18,16 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
-
+  Note_Taker
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-
+  For learners on the web to store notes and ideas.
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-
+  Note_Taker will offer a quick and easy way to store written entries on the web. Notes will be stored securely on the web and users will have access to them from any computer they access the app from.
 ## Problem ##
   > Describe the problem your product solves.
-
+  
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
