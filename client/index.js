@@ -21146,6 +21146,10 @@
 
 	var _PlainNotemaker2 = _interopRequireDefault(_PlainNotemaker);
 
+	var _Notelist = __webpack_require__(386);
+
+	var _Notelist2 = _interopRequireDefault(_Notelist);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21191,6 +21195,8 @@
 	        main = _react2.default.createElement(_Notemaker2.default, null);
 	      } else if (this.state.core === 'PlainNotemaker') {
 	        main = _react2.default.createElement(_PlainNotemaker2.default, null);
+	      } else if (this.state.core === 'Notelist') {
+	        main = _react2.default.createElement(_Notelist2.default, null); //add props here
 	      }
 
 	      return _react2.default.createElement(
@@ -22290,6 +22296,13 @@
 	            props.changeCore(event, 'PlainNotemaker');
 	          } },
 	        'Plain Notes...'
+	      ),
+	      _react2.default.createElement(
+	        _NavItem2.default,
+	        { eventKey: 5, href: '#', onClick: function onClick(event) {
+	            props.changeCore(event, 'Notelist');
+	          } },
+	        'Note List'
 	      )
 	    )
 	  );
@@ -44255,6 +44268,97 @@
 	}(_react2.default.Component);
 
 	exports.default = PlainNotemaker;
+
+/***/ },
+/* 386 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Noteentry = __webpack_require__(387);
+
+	var _Noteentry2 = _interopRequireDefault(_Noteentry);
+
+	var _Panel = __webpack_require__(247);
+
+	var _Panel2 = _interopRequireDefault(_Panel);
+
+	var _Well = __webpack_require__(248);
+
+	var _Well2 = _interopRequireDefault(_Well);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Notelist = function Notelist(props) {
+	  return _react2.default.createElement(
+	    _Well2.default,
+	    { className: 'noteList' },
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Notes:'
+	    ),
+	    _react2.default.createElement('ul', null),
+	    _react2.default.createElement(
+	      'a',
+	      { href: '#' },
+	      'Load More'
+	    )
+	  );
+	};
+
+	exports.default = Notelist;
+
+/***/ },
+/* 387 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Panel = __webpack_require__(247);
+
+	var _Panel2 = _interopRequireDefault(_Panel);
+
+	var _Well = __webpack_require__(248);
+
+	var _Well2 = _interopRequireDefault(_Well);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Noteentry = function Noteentry(props) {
+	  return _react2.default.createElement(
+	    _Panel2.default,
+	    { className: 'comment' },
+	    _react2.default.createElement(
+	      'h4',
+	      { className: 'username' },
+	      props.message.username
+	    ),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'note' },
+	      props.note.note
+	    )
+	  );
+	};
+
+	exports.default = Noteentry;
 
 /***/ }
 /******/ ]);

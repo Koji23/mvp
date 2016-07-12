@@ -46,7 +46,6 @@
         }
 
         _handleKeyCommand(command) {
-          console.log('heard from hkc');
           const {editorState} = this.state;
           const newState = RichUtils.handleKeyCommand(editorState, command);
           if (newState) {
@@ -102,7 +101,7 @@
                   blockStyleFn={getBlockStyle}
                   customStyleMap={styleMap}
                   editorState={editorState}
-                  handleKeyCommand={this._handleKeyCommand}
+                  handleKeyCommand={this.handleKeyCommand}
                   onChange={this.onChange}
                   placeholder="Tell a story..."
                   ref="editor"

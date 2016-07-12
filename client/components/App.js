@@ -10,7 +10,7 @@ import Signup from './Signup';
 import Login from './Login';
 import Notemaker from './Notemaker';
 import PlainNotemaker from './PlainNotemaker';
-
+import Notelist from './Notelist';
 
 class App extends React.Component {
   constructor (props) {
@@ -41,6 +41,8 @@ class App extends React.Component {
       main = <Notemaker />
     }else if (this.state.core === 'PlainNotemaker') {
       main = <PlainNotemaker />
+    }else if (this.state.core === 'Notelist') {
+      main = <Notelist /> //add props here
     }
 
     return (
