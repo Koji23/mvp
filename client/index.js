@@ -26764,6 +26764,12 @@
 	      this.onChange(_draftJs.RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle));
 	    }
 	  }, {
+	    key: '_postRichNote',
+	    value: function _postRichNote() {
+	      var note = this.state.editorState.getCurrentContent();
+	      console.log((0, _draftJs.convertToRaw)(note));
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var editorState = this.state.editorState;
@@ -26803,6 +26809,11 @@
 	            ref: 'editor',
 	            spellCheck: true
 	          })
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'button', onClick: this._postRichNote.bind(this) },
+	          'Save'
 	        )
 	      );
 	    }
@@ -26811,8 +26822,9 @@
 	  return Notemaker;
 	}(_react2.default.Component);
 
-	// Custom overrides for "code" style.
+	exports.default = Notemaker;
 
+	// Custom overrides for "code" style.
 
 	var styleMap = {
 	  CODE: {
@@ -26907,8 +26919,6 @@
 	    })
 	  );
 	};
-
-	exports.default = Notemaker;
 
 	// return (
 	//   <Panel>

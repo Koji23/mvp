@@ -5,7 +5,7 @@ import React from 'react';
 
 //for draft.js
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
 
 
 
@@ -53,6 +53,11 @@ class Notemaker extends React.Component {
     );
   }
 
+  _postRichNote () {
+    var note = this.state.editorState.getCurrentContent();
+    console.log(convertToRaw(note)); 
+  }
+
   render() {
     const {editorState} = this.state;
 
@@ -88,10 +93,16 @@ class Notemaker extends React.Component {
             spellCheck={true}
           />
         </div>
+        <button type="button" onClick={this._postRichNote.bind(this)}>Save</button>
       </div>
     );
   }
 }
+
+
+
+export default Notemaker; 
+
 
 // Custom overrides for "code" style.
 const styleMap = {
@@ -192,12 +203,6 @@ const InlineStyleControls = (props) => {
     </div>
   );
 };
-
-export default Notemaker; 
-
-
-
-
 
 
 // return (
