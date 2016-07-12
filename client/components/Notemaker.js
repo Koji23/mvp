@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from 'react-bootstrap/lib/Button';
+
 // import Panel from 'react-bootstrap/lib/Panel';
 // import Well from 'react-bootstrap/lib/Well';
 
@@ -98,7 +100,7 @@ class Notemaker extends React.Component {
             spellCheck={true}
           />
         </div>
-        <button type="button" onClick={this._postRichNote.bind(this)}>Save New Note</button>
+        <Button type="button" onClick={this._postRichNote.bind(this)}>Save New Note</Button>
       </div>
     );
   }

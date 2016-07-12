@@ -8,5 +8,9 @@ module.exports = function(app, express) {
 
   app.post('/notes', notesController.addNote);
 
+  app.post('/users', function(req, res){
+    console.log(req.body);
+  }); 
+
 };
 

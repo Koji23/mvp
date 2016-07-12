@@ -3,23 +3,6 @@ import React from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
 import Well from 'react-bootstrap/lib/Well';
 
-
-var postNote = function(note, cb){
-  return $.ajax({
-    method: "POST",
-    url: "http://localhost:3000/notes",
-    data: JSON.stringify(note),
-    contentType: 'application/json',
-    success: function(data){
-      console.log('Post Success!', data);
-      cb(data);
-    },
-    error: function(data){
-      console.error('Notemaker: Failed to send note', data);
-    }
-  })
-};
-
 class PlainNotemaker extends React.Component {
   constructor (props) {
     super(props);
@@ -64,5 +47,20 @@ class PlainNotemaker extends React.Component {
 
 export default PlainNotemaker; 
 
-
+//Jquery ajax
+var postNote = function(note, cb){
+  return $.ajax({
+    method: "POST",
+    url: "http://localhost:3000/notes",
+    data: JSON.stringify(note),
+    contentType: 'application/json',
+    success: function(data){
+      console.log('Post Success!', data);
+      cb(data);
+    },
+    error: function(data){
+      console.error('Notemaker: Failed to send note', data);
+    }
+  })
+};
 
