@@ -44482,7 +44482,6 @@
 	    value: function _getNotes() {
 	      var context = this;
 	      getMessages(function (data) {
-	        console.log((0, _draftJs.convertFromRaw)(JSON.parse(data[data.length - 1].note)));
 	        context.setState({ notes: data });
 	      });
 	    }
@@ -44556,6 +44555,8 @@
 	var _Well = __webpack_require__(248);
 
 	var _Well2 = _interopRequireDefault(_Well);
+
+	var _draftJs = __webpack_require__(259);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

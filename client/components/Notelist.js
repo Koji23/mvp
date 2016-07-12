@@ -22,7 +22,6 @@ class Notelist extends React.Component {
   _getNotes () {
     var context = this;
     getMessages(function(data){
-      console.log(convertFromRaw(JSON.parse(data[data.length-1].note)));
       context.setState({notes: data});
     });
   }
