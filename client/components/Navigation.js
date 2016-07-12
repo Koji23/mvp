@@ -10,8 +10,8 @@ var Navigation = (props) => (
       <a href="#">Note Taker</a>
     </Navbar.Brand>
     <Nav pullRight={true} bsStyle="pills">
-      <NavItem eventKey={1} href="#">Signup</NavItem>
-      <NavItem eventKey={2} href="#">Login</NavItem>
+      <NavItem eventKey={1} href="#" onClick={(event) => { props.changeCore(event, 'Signup') }}>Signup</NavItem>
+      <NavItem eventKey={2} href="#" onClick={(event) => { props.changeCore(event, 'Login') }}>Login</NavItem>
       <NavItem eventKey={3} href="#">Notes!</NavItem>
     </Nav>
   </Navbar>

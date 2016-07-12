@@ -12,7 +12,7 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 var Signup = (props) => (
   <Panel >
     <Well>
-      <h2>Login</h2>
+      <h2>Signup</h2>
       <form>
         <FormGroup>
           <ControlLabel>Username:</ControlLabel>
