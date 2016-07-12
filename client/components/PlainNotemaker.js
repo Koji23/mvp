@@ -46,9 +46,7 @@ class PlainNotemaker extends React.Component {
       username: 'anonymous',
       note: this.state.note
     };
-    postNote(options, function(){
-      console.log('yo!');
-    });
+    postNote(options);
   }
 
   render () {

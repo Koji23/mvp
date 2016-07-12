@@ -54,8 +54,14 @@ class Notemaker extends React.Component {
   }
 
   _postRichNote () {
-    var note = this.state.editorState.getCurrentContent();
-    console.log(convertToRaw(note)); 
+    var options = {
+      username: 'anonymous',
+      note: JSON.stringify(this.state.editorState.getCurrentContent())
+    };
+    // console.log(options);
+    postNote(options, function(d){
+      console.log(d);
+    });
   }
 
   render() {
@@ -93,7 +99,7 @@ class Notemaker extends React.Component {
             spellCheck={true}
           />
         </div>
-        <button type="button" onClick={this._postRichNote.bind(this)}>Save</button>
+        <button type="button" onClick={this._postRichNote.bind(this)}>Save New Note</button>
       </div>
     );
   }
@@ -205,6 +211,21 @@ const InlineStyleControls = (props) => {
 };
 
 
+var postNote = function(note, cb){
+  return $.ajax({
+    method: "POST",
+    url: "http://localhost:3000/notes",
+    data: JSON.stringify(note),
+    contentType: 'application/json',
+    success: function(data){
+      console.log('Post Success!', data);
+      cb(data);
+    },
+    error: function(data){
+      console.error('Notemaker: Failed to send note', data);
+    }
+  })
+};
 // return (
 //   <Panel>
 //     <Well>

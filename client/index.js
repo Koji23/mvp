@@ -26766,8 +26766,14 @@
 	  }, {
 	    key: '_postRichNote',
 	    value: function _postRichNote() {
-	      var note = this.state.editorState.getCurrentContent();
-	      console.log((0, _draftJs.convertToRaw)(note));
+	      var options = {
+	        username: 'anonymous',
+	        note: JSON.stringify(this.state.editorState.getCurrentContent())
+	      };
+	      // console.log(options);
+	      postNote(options, function (d) {
+	        console.log(d);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -26813,7 +26819,7 @@
 	        _react2.default.createElement(
 	          'button',
 	          { type: 'button', onClick: this._postRichNote.bind(this) },
-	          'Save'
+	          'Save New Note'
 	        )
 	      );
 	    }
@@ -26920,6 +26926,21 @@
 	  );
 	};
 
+	var postNote = function postNote(note, cb) {
+	  return $.ajax({
+	    method: "POST",
+	    url: "http://localhost:3000/notes",
+	    data: JSON.stringify(note),
+	    contentType: 'application/json',
+	    success: function success(data) {
+	      console.log('Post Success!', data);
+	      cb(data);
+	    },
+	    error: function error(data) {
+	      console.error('Notemaker: Failed to send note', data);
+	    }
+	  });
+	};
 	// return (
 	//   <Panel>
 	//     <Well>
@@ -44355,9 +44376,7 @@
 	        username: 'anonymous',
 	        note: this.state.note
 	      };
-	      postNote(options, function () {
-	        console.log('yo!');
-	      });
+	      postNote(options);
 	    }
 	  }, {
 	    key: 'render',
