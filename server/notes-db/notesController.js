@@ -2,7 +2,7 @@ var notesModel = require('./notesModel.js');
 
 
 module.exports.addNote = function(req, res, next) {
-  console.log('///////////////', req.body);
+  // console.log('///////////////', req.body);
   notesModel.create(req.body, function(err, data){
     if(err) throw err;
     console.log(data);

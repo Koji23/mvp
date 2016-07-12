@@ -2,6 +2,7 @@ body {
   background-color: lightblue;
 }
 
+/* bootstrap styles for modal */
 .modal-container {
   position: relative;
 }
@@ -12,36 +13,36 @@ body {
 
 /*Draft.js Example Styles*/
 
-.DraftEditor-root {
+.RichEditor-root {
   background: #fff;
-  border: 1px solid #ddd;  /*sdasdf*/
+  border: 1px solid #ddd;
   font-family: 'Georgia', serif;
   font-size: 14px;
   padding: 15px;
 }
 
-.DraftEditor-editor {
+.RichEditor-editor {
   border-top: 1px solid #ddd;
   cursor: text;
   font-size: 16px;
   margin-top: 10px;
 }
 
-.DraftEditor-editor .public-DraftEditorPlaceholder-root,
-.DraftEditor-editor .public-DraftEditor-content {
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
   margin: 0 -15px -15px;
   padding: 15px;
 }
 
-.DraftEditor-editor .public-DraftEditor-content {
+.RichEditor-editor .public-DraftEditor-content {
   min-height: 100px;
 }
 
-.DraftEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
   display: none;
 }
 
-.DraftEditor-editor .DraftEditor-blockquote {
+.RichEditor-editor .RichEditor-blockquote {
   border-left: 5px solid #eee;
   color: #666;
   font-family: 'Hoefler Text', 'Georgia', serif;
@@ -50,21 +51,21 @@ body {
   padding: 10px 20px;
 }
 
-.DraftEditor-editor .public-DraftStyleDefault-pre {
+.RichEditor-editor .public-DraftStyleDefault-pre {
   background-color: rgba(0, 0, 0, 0.05);
   font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
   font-size: 16px;
   padding: 20px;
 }
 
-.DraftEditor-controls {
+.RichEditor-controls {
   font-family: 'Helvetica', sans-serif;
   font-size: 14px;
   margin-bottom: 5px;
   user-select: none;
 }
 
-.DraftEditor-styleButton {
+.RichEditor-styleButton {
   color: #999;
   cursor: pointer;
   margin-right: 16px;
@@ -72,6 +73,6 @@ body {
   display: inline-block;
 }
 
-.DraftEditor-activeButton {
+.RichEditor-activeButton {
   color: #5890ff;
 }
