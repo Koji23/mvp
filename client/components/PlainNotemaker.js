@@ -8,7 +8,7 @@ class PlainNotemaker extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-     
+     note: ''
     };
   }
 
@@ -16,7 +16,12 @@ class PlainNotemaker extends React.Component {
     // console.log(Editor);
   }
 
-  
+  _updateNote (inputVal) {
+    this.setState({
+      note: inputVal
+    });
+    console.log(this.state.note);
+  }
 
 
   render () {
@@ -24,8 +29,8 @@ class PlainNotemaker extends React.Component {
       <div>
         <h2>Plain Notemaker</h2>
           <Well>
-            <textarea></textarea>
-            <button onClick={}></button>
+            <textarea onChange={(event) => {this._updateNote(event.target.value)} } ></textarea> <br/>
+            <button  >Save</button>
           </Well>
       </div>
     );
