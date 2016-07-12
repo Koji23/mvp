@@ -9,6 +9,7 @@ import Navigation from './Navigation';
 import Signup from './Signup';
 import Login from './Login';
 import Notemaker from './Notemaker';
+import PlainNotemaker from './PlainNotemaker';
 
 
 class App extends React.Component {
@@ -38,6 +39,8 @@ class App extends React.Component {
       main = <Login />
     } else if (this.state.core === 'Notemaker') {
       main = <Notemaker />
+    }else if (this.state.core === 'PlainNotemaker') {
+      main = <PlainNotemaker />
     }
 
     return (
