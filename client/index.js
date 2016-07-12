@@ -21142,6 +21142,10 @@
 
 	var _Notemaker2 = _interopRequireDefault(_Notemaker);
 
+	var _PlainNotemaker = __webpack_require__(385);
+
+	var _PlainNotemaker2 = _interopRequireDefault(_PlainNotemaker);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21185,6 +21189,8 @@
 	        main = _react2.default.createElement(_Login2.default, null);
 	      } else if (this.state.core === 'Notemaker') {
 	        main = _react2.default.createElement(_Notemaker2.default, null);
+	      } else if (this.state.core === 'PlainNotemaker') {
+	        main = _react2.default.createElement(_PlainNotemaker2.default, null);
 	      }
 
 	      return _react2.default.createElement(
@@ -22277,6 +22283,13 @@
 	            props.changeCore(event, 'Notemaker');
 	          } },
 	        'Notes!'
+	      ),
+	      _react2.default.createElement(
+	        _NavItem2.default,
+	        { eventKey: 4, href: '#', onClick: function onClick(event) {
+	            props.changeCore(event, 'PlainNotemaker');
+	          } },
+	        'Plain Notes...'
 	      )
 	    )
 	  );
@@ -44116,6 +44129,128 @@
 	}
 
 	module.exports = getRangeBoundingClientRect;
+
+/***/ },
+/* 385 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Panel = __webpack_require__(247);
+
+	var _Panel2 = _interopRequireDefault(_Panel);
+
+	var _Well = __webpack_require__(248);
+
+	var _Well2 = _interopRequireDefault(_Well);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var postNote = function postNote(note, cb) {
+	  return $.ajax({
+	    method: "POST",
+	    url: "http://localhost:3000/notes",
+	    data: JSON.stringify(note),
+	    contentType: 'application/json',
+	    success: function success(data) {
+	      console.log('Post Success!', data);
+	      cb(data);
+	    },
+	    error: function error(data) {
+	      console.error('Notemaker: Failed to send note', data);
+	    }
+	  });
+	};
+
+	var PlainNotemaker = function (_React$Component) {
+	  _inherits(PlainNotemaker, _React$Component);
+
+	  function PlainNotemaker(props) {
+	    _classCallCheck(this, PlainNotemaker);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlainNotemaker).call(this, props));
+
+	    _this.state = {
+	      note: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(PlainNotemaker, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      // console.log(Editor);
+	      console.log(postNote);
+	    }
+	  }, {
+	    key: '_updateNote',
+	    value: function _updateNote(inputVal) {
+	      this.setState({
+	        note: inputVal
+	      });
+	      console.log(this.state.note);
+	    }
+	  }, {
+	    key: '_postNote',
+	    value: function _postNote(event) {
+	      console.log('the stateeee', this.state.note);
+	      postNote(JSON.stringify(this.state.note), function () {
+	        console.log('yo!');
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Plain Notemaker'
+	        ),
+	        _react2.default.createElement(
+	          _Well2.default,
+	          null,
+	          _react2.default.createElement('textarea', { onChange: function onChange(event) {
+	              _this2._updateNote(event.target.value);
+	            } }),
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick(event) {
+	                _this2._postNote(event);
+	              } },
+	            'Save'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return PlainNotemaker;
+	}(_react2.default.Component);
+
+	exports.default = PlainNotemaker;
 
 /***/ }
 /******/ ]);
