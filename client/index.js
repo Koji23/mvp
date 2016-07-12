@@ -26715,6 +26715,7 @@
 	  }, {
 	    key: 'handleKeyCommand',
 	    value: function handleKeyCommand(command) {
+	      console.log('heard from handle key command ', command); //fires on enter
 	      var newState = _draftJs.RichUtils.handleKeyCommand(this.state.editorState, command);
 	      if (newState) {
 	        this.onChange(newState);
@@ -26725,6 +26726,7 @@
 	  }, {
 	    key: '_onBoldClick',
 	    value: function _onBoldClick() {
+	      // console.log('???heard from onBoldClikc');
 	      this.onChange(_draftJs.RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
 	    }
 	  }, {
@@ -26732,32 +26734,28 @@
 	    value: function render() {
 	      var editorState = this.state.editorState;
 
-
+	      console.log('from render: ', this.state.editorState);
 	      return _react2.default.createElement(
-	        _Panel2.default,
+	        'div',
 	        null,
 	        _react2.default.createElement(
-	          _Well2.default,
+	          'h2',
 	          null,
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Notemaker'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this._onBoldClick.bind(this) },
-	            'Bold'
-	          ),
-	          _react2.default.createElement(
-	            _Panel2.default,
-	            null,
-	            _react2.default.createElement(_draftJs.Editor, {
-	              editorState: this.state.editorState,
-	              handleKeyCommand: this.handleKeyCommand,
-	              onChange: this.onChange
-	            })
-	          )
+	          'Notemaker'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this._onBoldClick.bind(this) },
+	          'Bold'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_draftJs.Editor, {
+	            editorState: this.state.editorState,
+	            handleKeyCommand: this.handleKeyCommand,
+	            onChange: this.onChange
+	          })
 	        )
 	      );
 	    }
@@ -26767,6 +26765,22 @@
 	}(_react2.default.Component);
 
 	exports.default = Notemaker;
+
+	// return (
+	//   <Panel>
+	//     <Well>
+	//       <h2>Notemaker</h2>
+	//         <button onClick={this._onBoldClick.bind(this)}>Bold</button>
+	//         <Panel>
+	//           <Editor
+	//             editorState={this.state.editorState}
+	//             handleKeyCommand={this.handleKeyCommand}
+	//             onChange={this.onChange}
+	//           />
+	//         </Panel>
+	//     </Well>
+	//   </Panel>
+	// );
 
 /***/ },
 /* 259 */
