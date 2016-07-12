@@ -7,7 +7,7 @@ module.exports = function(app, express) {
   });
 
   app.post('/notes', function(req, res){
-    console.log('heard post for note!!!!!!!!!!');
+    console.log('heard post for note!!!!!!!!!!', req.body);
   });
 
 };

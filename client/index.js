@@ -44209,8 +44209,12 @@
 	  }, {
 	    key: '_postNote',
 	    value: function _postNote(event) {
-	      console.log('the stateeee', this.state.note);
-	      postNote(JSON.stringify(this.state.note), function () {
+	      // console.log('the stateeee', this.state.note);
+	      var options = {
+	        username: 'anonymous',
+	        note: this.state.note
+	      };
+	      postNote(options, function () {
 	        console.log('yo!');
 	      });
 	    }
