@@ -29,7 +29,7 @@ class Signup extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    postNote(options, function(response){
+    postData(options, function(response){
       //DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
     });
   }
@@ -59,10 +59,10 @@ class Signup extends React.Component {
 export default Signup;
 
 //Jquery ajax
-var postNote = function(note, cb){
+var postData = function(note, cb){
   return $.ajax({
     method: "POST",
-    url: "http://localhost:3000/users",
+    url: "http://localhost:3000/users/signup",
     data: JSON.stringify(note),
     contentType: 'application/json',
     success: function(data){

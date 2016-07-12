@@ -3,6 +3,7 @@ var middleware = require('./config/middleware');
 var routes = require('./config/routes');
 var mongoose = require('mongoose');
 // var notesModel = require('./notes-db/notesModel.js');
+// var usersModel = require('./users-db/usersModel.js');
 
 //
 var app = express();
@@ -17,6 +18,11 @@ db.once('open', function() {
   console.log('connection opened!');
 });
 
+// console.log('?????????', usersModel);
+//  usersModel.create({username: 'admin', note:'hello world'}, function(err, data){
+//   if(err) throw err;
+//   console.log(data);
+// });
 
 // notesModel.create({username: 'admin', note:'hello world'}, function(err, data){
 //     if(err) throw err;

@@ -25555,7 +25555,7 @@
 	        username: this.state.username,
 	        password: this.state.password
 	      };
-	      postNote(options, function (response) {
+	      postData(options, function (response) {
 	        //DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
 	      });
 	    }
@@ -25617,10 +25617,10 @@
 
 	//Jquery ajax
 
-	var postNote = function postNote(note, cb) {
+	var postData = function postData(note, cb) {
 	  return $.ajax({
 	    method: "POST",
-	    url: "http://localhost:3000/users",
+	    url: "http://localhost:3000/users/signup",
 	    data: JSON.stringify(note),
 	    contentType: 'application/json',
 	    success: function success(data) {
@@ -25714,7 +25714,7 @@
 	        username: this.state.username,
 	        password: this.state.password
 	      };
-	      postNote(options, function (response) {
+	      postData(options, function (response) {
 	        //DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
 	      });
 	    }
@@ -25776,10 +25776,10 @@
 
 	//Jquery ajax
 
-	var postNote = function postNote(note, cb) {
+	var postData = function postData(note, cb) {
 	  return $.ajax({
 	    method: "POST",
-	    url: "http://localhost:3000/users",
+	    url: "http://localhost:3000/users/login",
 	    data: JSON.stringify(note),
 	    contentType: 'application/json',
 	    success: function success(data) {
