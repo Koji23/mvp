@@ -1,13 +1,12 @@
-
+var notesController = require('../notes-db/notesController.js');
 
 module.exports = function(app, express) {
 
-  app.get('/notes', function(req, res){
-    console.log('heard get for note!@!!!!!!');
-  });
+  // console.log('!!!!!!!!!!!!!!!!!!!!!!', notesController.addNote);
 
-  app.post('/notes', function(req, res){
-    console.log('heard post for note!!!!!!!!!!', req.body);
-  });
+  app.get('/notes', notesController.getAllNotes);
+
+  app.post('/notes', notesController.addNote);
 
 };
+
