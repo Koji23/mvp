@@ -44342,7 +44342,7 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      //get notes
-	      // _getNotes();
+	      this._getNotes();
 	    }
 	  }, {
 	    key: '_getNotes',

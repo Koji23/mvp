@@ -30,7 +30,7 @@ class Notelist extends React.Component {
 
   componentDidMount () {
     //get notes
-    // _getNotes();
+    this._getNotes();
   }
 
   _getNotes () {
