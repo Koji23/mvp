@@ -26768,9 +26768,8 @@
 	    value: function _postRichNote() {
 	      var options = {
 	        username: 'anonymous',
-	        note: JSON.stringify(this.state.editorState.getCurrentContent())
+	        note: JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()))
 	      };
-	      // console.log(options);
 	      postNote(options, function (d) {
 	        console.log(d);
 	      });
@@ -44448,6 +44447,8 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _draftJs = __webpack_require__(259);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44455,21 +44456,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var getMessages = function getMessages(cb) {
-	  return $.ajax({
-	    method: "GET",
-	    url: "http://localhost:3000/notes",
-	    contentType: "application/json",
-	    success: function success(data) {
-	      cb(data);
-	    },
-	    error: function error(data) {
-	      // console.log(data);
-	      console.err('NoteTaker: Failed to retrieve messages', data);
-	    }
-	  });
-	};
 
 	var Notelist = function (_React$Component) {
 	  _inherits(Notelist, _React$Component);
@@ -44496,6 +44482,7 @@
 	    value: function _getNotes() {
 	      var context = this;
 	      getMessages(function (data) {
+	        console.log((0, _draftJs.convertFromRaw)(JSON.parse(data[data.length - 1].note)));
 	        context.setState({ notes: data });
 	      });
 	    }
@@ -44531,6 +44518,22 @@
 	}(_react2.default.Component);
 
 	exports.default = Notelist;
+
+
+	var getMessages = function getMessages(cb) {
+	  return $.ajax({
+	    method: "GET",
+	    url: "http://localhost:3000/notes",
+	    contentType: "application/json",
+	    success: function success(data) {
+	      cb(data);
+	    },
+	    error: function error(data) {
+	      // console.log(data);
+	      console.err('NoteTaker: Failed to retrieve messages', data);
+	    }
+	  });
+	};
 
 /***/ },
 /* 387 */

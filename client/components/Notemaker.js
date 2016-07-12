@@ -56,9 +56,8 @@ class Notemaker extends React.Component {
   _postRichNote () {
     var options = {
       username: 'anonymous',
-      note: JSON.stringify(this.state.editorState.getCurrentContent())
+      note: JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
     };
-    // console.log(options);
     postNote(options, function(d){
       console.log(d);
     });

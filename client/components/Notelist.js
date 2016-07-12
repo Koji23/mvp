@@ -4,21 +4,7 @@ import Noteentry from './Noteentry';
 import Panel from 'react-bootstrap/lib/Panel';
 import Well from 'react-bootstrap/lib/Well';
 import Button from 'react-bootstrap/lib/Button';
-
-var getMessages = function(cb){
-  return $.ajax({
-    method: "GET",
-    url: "http://localhost:3000/notes",
-    contentType: "application/json",
-    success: function(data){
-      cb(data);
-    },
-    error: function(data){
-      // console.log(data);
-      console.err('NoteTaker: Failed to retrieve messages', data);
-    }
-  });
-};
+import {convertFromRaw} from 'draft-js';
 
 class Notelist extends React.Component {
   constructor(props) {
@@ -36,6 +22,7 @@ class Notelist extends React.Component {
   _getNotes () {
     var context = this;
     getMessages(function(data){
+      console.log(convertFromRaw(JSON.parse(data[data.length-1].note)));
       context.setState({notes: data});
     });
   }
@@ -58,3 +45,20 @@ class Notelist extends React.Component {
 
 
 export default Notelist;
+
+
+
+var getMessages = function(cb){
+  return $.ajax({
+    method: "GET",
+    url: "http://localhost:3000/notes",
+    contentType: "application/json",
+    success: function(data){
+      cb(data);
+    },
+    error: function(data){
+      // console.log(data);
+      console.err('NoteTaker: Failed to retrieve messages', data);
+    }
+  });
+};
