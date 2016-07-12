@@ -8,13 +8,14 @@ import Clearfix from 'react-bootstrap/lib/Clearfix';
 import Navigation from './Navigation';
 import Signup from './Signup';
 import Login from './Login';
+import Notemaker from './Notemaker';
 
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      core: 'none'
+      core: 'Login'
     }
   }
 
@@ -23,10 +24,10 @@ class App extends React.Component {
   }
 
   _changeCore (event, str) {
-    console.log('from onClick',str);
-    console.log('before setState', this.state.core);
+    // console.log('from onClick',str);
+    // console.log('before setState', this.state.core);
     this.setState({core: str});
-    console.log('after setState', this.state.core);
+    // console.log('after setState', this.state.core);
   }
 
   render () {
@@ -35,6 +36,8 @@ class App extends React.Component {
       main = <Signup />
     } else if (this.state.core === 'Login') {
       main = <Login />
+    } else if (this.state.core === 'Notemaker') {
+      main = <Notemaker />
     }
 
     return (

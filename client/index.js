@@ -21138,6 +21138,10 @@
 
 	var _Login2 = _interopRequireDefault(_Login);
 
+	var _Notemaker = __webpack_require__(319);
+
+	var _Notemaker2 = _interopRequireDefault(_Notemaker);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21155,7 +21159,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
 	    _this.state = {
-	      core: 'none'
+	      core: 'Login'
 	    };
 	    return _this;
 	  }
@@ -21166,10 +21170,10 @@
 	  }, {
 	    key: '_changeCore',
 	    value: function _changeCore(event, str) {
-	      console.log('from onClick', str);
-	      console.log('before setState', this.state.core);
+	      // console.log('from onClick',str);
+	      // console.log('before setState', this.state.core);
 	      this.setState({ core: str });
-	      console.log('after setState', this.state.core);
+	      // console.log('after setState', this.state.core);
 	    }
 	  }, {
 	    key: 'render',
@@ -21179,6 +21183,8 @@
 	        main = _react2.default.createElement(_Signup2.default, null);
 	      } else if (this.state.core === 'Login') {
 	        main = _react2.default.createElement(_Login2.default, null);
+	      } else if (this.state.core === 'Notemaker') {
+	        main = _react2.default.createElement(_Notemaker2.default, null);
 	      }
 
 	      return _react2.default.createElement(
@@ -22267,7 +22273,9 @@
 	      ),
 	      _react2.default.createElement(
 	        _NavItem2.default,
-	        { eventKey: 3, href: '#' },
+	        { eventKey: 3, href: '#', onClick: function onClick(event) {
+	            props.changeCore(event, 'Notemaker');
+	          } },
 	        'Notes!'
 	      )
 	    )
@@ -26700,6 +26708,77 @@
 	};
 
 	exports.default = Login;
+
+/***/ },
+/* 319 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Panel = __webpack_require__(309);
+
+	var _Panel2 = _interopRequireDefault(_Panel);
+
+	var _Well = __webpack_require__(310);
+
+	var _Well2 = _interopRequireDefault(_Well);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Notemaker = function (_React$Component) {
+	  _inherits(Notemaker, _React$Component);
+
+	  function Notemaker(props) {
+	    _classCallCheck(this, Notemaker);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Notemaker).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(Notemaker, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {}
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _Panel2.default,
+	        null,
+	        _react2.default.createElement(
+	          _Well2.default,
+	          null,
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Notemaker'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Notemaker;
+	}(_react2.default.Component);
+
+	exports.default = Notemaker;
 
 /***/ }
 /******/ ]);
