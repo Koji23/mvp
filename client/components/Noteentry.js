@@ -4,7 +4,7 @@ import Well from 'react-bootstrap/lib/Well';
 
 var Noteentry = (props) => (
   <Panel className="comment">
-    <h4 className="username">{props.message.username}</h4>
+    <h4 className="username">{props.note.username}</h4>
     <span className="note">{props.note.note}</span>
   </Panel>
 );

@@ -44279,6 +44279,8 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -44295,25 +44297,91 @@
 
 	var _Well2 = _interopRequireDefault(_Well);
 
+	var _Button = __webpack_require__(388);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Notelist = function Notelist(props) {
-	  return _react2.default.createElement(
-	    _Well2.default,
-	    { className: 'noteList' },
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Notes:'
-	    ),
-	    _react2.default.createElement('ul', null),
-	    _react2.default.createElement(
-	      'a',
-	      { href: '#' },
-	      'Load More'
-	    )
-	  );
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var getMessages = function getMessages(cb) {
+	  return $.ajax({
+	    method: "GET",
+	    url: "http://localhost:3000/notes",
+	    contentType: "application/json",
+	    success: function success(data) {
+	      cb(data);
+	    },
+	    error: function error(data) {
+	      // console.log(data);
+	      console.err('NoteTaker: Failed to retrieve messages', data);
+	    }
+	  });
 	};
+
+	var Notelist = function (_React$Component) {
+	  _inherits(Notelist, _React$Component);
+
+	  function Notelist(props) {
+	    _classCallCheck(this, Notelist);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Notelist).call(this, props));
+
+	    _this.state = {
+	      notes: []
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Notelist, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      //get notes
+	      // _getNotes();
+	    }
+	  }, {
+	    key: '_getNotes',
+	    value: function _getNotes() {
+	      var context = this;
+	      getMessages(function (data) {
+	        context.setState({ notes: data });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _Well2.default,
+	        { className: 'noteList' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Notes:'
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.state.notes.map(function (note) {
+	            return _react2.default.createElement(_Noteentry2.default, { note: note, key: note._id });
+	            // return <li>{note._id}</li>
+	          })
+	        ),
+	        _react2.default.createElement(
+	          _Button2.default,
+	          { onClick: this._getNotes.bind(this) },
+	          'Load More'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Notelist;
+	}(_react2.default.Component);
 
 	exports.default = Notelist;
 
@@ -44348,7 +44416,7 @@
 	    _react2.default.createElement(
 	      'h4',
 	      { className: 'username' },
-	      props.message.username
+	      props.note.username
 	    ),
 	    _react2.default.createElement(
 	      'span',
@@ -44359,6 +44427,154 @@
 	};
 
 	exports.default = Noteentry;
+
+/***/ },
+/* 388 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _inherits = __webpack_require__(213)['default'];
+
+	var _classCallCheck = __webpack_require__(220)['default'];
+
+	var _extends = __webpack_require__(174)['default'];
+
+	var _interopRequireDefault = __webpack_require__(190)['default'];
+
+	exports.__esModule = true;
+
+	var _classnames = __webpack_require__(191);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactPropTypesLibElementType = __webpack_require__(192);
+
+	var _reactPropTypesLibElementType2 = _interopRequireDefault(_reactPropTypesLibElementType);
+
+	var _styleMaps = __webpack_require__(200);
+
+	var _utilsBootstrapUtils = __webpack_require__(211);
+
+	var _SafeAnchor = __webpack_require__(245);
+
+	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
+
+	var ButtonStyles = _styleMaps.State.values().concat(_styleMaps.DEFAULT, _styleMaps.PRIMARY, _styleMaps.LINK);
+
+	var types = ['button', 'reset', 'submit'];
+
+	var Button = (function (_React$Component) {
+	  _inherits(Button, _React$Component);
+
+	  function Button(props, context) {
+	    _classCallCheck(this, Button);
+
+	    _React$Component.call(this, props, context);
+	  }
+
+	  Button.prototype.render = function render() {
+	    var _extends2;
+
+	    var classes = this.props.navDropdown ? {} : _utilsBootstrapUtils.getClassSet(this.props);
+	    var renderFuncName = undefined;
+
+	    var blockClass = _utilsBootstrapUtils.prefix(this.props, 'block');
+
+	    classes = _extends((_extends2 = {
+	      active: this.props.active
+	    }, _extends2[blockClass] = this.props.block, _extends2), classes);
+
+	    if (this.props.navItem) {
+	      return this.renderNavItem(classes);
+	    }
+
+	    renderFuncName = this.props.href || this.props.target || this.props.navDropdown ? 'renderAnchor' : 'renderButton';
+
+	    return this[renderFuncName](classes);
+	  };
+
+	  Button.prototype.renderAnchor = function renderAnchor(classes) {
+	    var _props = this.props;
+	    var disabled = _props.disabled;
+	    var href = _props.href;
+
+	    classes.disabled = disabled;
+
+	    return _react2['default'].createElement(
+	      _SafeAnchor2['default'],
+	      _extends({}, this.props, {
+	        href: href || '#',
+	        className: _classnames2['default'](this.props.className, classes)
+	      }),
+	      this.props.children
+	    );
+	  };
+
+	  Button.prototype.renderButton = function renderButton(classes) {
+	    var Component = this.props.componentClass || 'button';
+
+	    return _react2['default'].createElement(
+	      Component,
+	      _extends({}, this.props, {
+	        type: this.props.type || 'button',
+	        className: _classnames2['default'](this.props.className, classes) }),
+	      this.props.children
+	    );
+	  };
+
+	  Button.prototype.renderNavItem = function renderNavItem(classes) {
+	    var liClasses = {
+	      active: this.props.active
+	    };
+
+	    return _react2['default'].createElement(
+	      'li',
+	      { className: _classnames2['default'](liClasses) },
+	      this.renderAnchor(classes)
+	    );
+	  };
+
+	  return Button;
+	})(_react2['default'].Component);
+
+	Button.propTypes = {
+	  active: _react2['default'].PropTypes.bool,
+	  disabled: _react2['default'].PropTypes.bool,
+	  block: _react2['default'].PropTypes.bool,
+	  navItem: _react2['default'].PropTypes.bool,
+	  navDropdown: _react2['default'].PropTypes.bool,
+	  onClick: _react2['default'].PropTypes.func,
+	  /**
+	   * You can use a custom element for this component
+	   */
+	  componentClass: _reactPropTypesLibElementType2['default'],
+	  href: _react2['default'].PropTypes.string,
+	  target: _react2['default'].PropTypes.string,
+	  /**
+	   * Defines HTML button type Attribute
+	   * @type {("button"|"reset"|"submit")}
+	   * @defaultValue 'button'
+	   */
+	  type: _react2['default'].PropTypes.oneOf(types)
+	};
+
+	Button.defaultProps = {
+	  active: false,
+	  block: false,
+	  disabled: false,
+	  navItem: false,
+	  navDropdown: false
+	};
+
+	Button.types = types;
+
+	exports['default'] = _utilsBootstrapUtils.bsStyles(ButtonStyles, _styleMaps.DEFAULT, _utilsBootstrapUtils.bsSizes([_styleMaps.Sizes.LARGE, _styleMaps.Sizes.SMALL, _styleMaps.Sizes.XSMALL], _utilsBootstrapUtils.bsClass('btn', Button)));
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
