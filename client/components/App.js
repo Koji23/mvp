@@ -17,14 +17,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       core: 'Login', //default to login
-      loggedIn: true,
+      loggedIn: false,
       appEditorState: undefined
     }
   }
 
   _changeAppEditorStateAndCore (newEditorState) {
-    this.setState({test: 'hiiiii'});
-    console.log("FROM APP ", this.state.test, newEditorState);
+    this.setState({appEditorState: newEditorState});
+    // console.log("FROM APP ", this.state.test, newEditorState);
     this._changeCore(null, 'Notemaker');
   }
 

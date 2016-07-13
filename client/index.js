@@ -21168,7 +21168,7 @@
 
 	    _this.state = {
 	      core: 'Login', //default to login
-	      loggedIn: true,
+	      loggedIn: false,
 	      appEditorState: undefined
 	    };
 	    return _this;
@@ -21177,8 +21177,8 @@
 	  _createClass(App, [{
 	    key: '_changeAppEditorStateAndCore',
 	    value: function _changeAppEditorStateAndCore(newEditorState) {
-	      this.setState({ test: 'hiiiii' });
-	      console.log("FROM APP ", this.state.test, newEditorState);
+	      this.setState({ appEditorState: newEditorState });
+	      // console.log("FROM APP ", this.state.test, newEditorState);
 	      this._changeCore(null, 'Notemaker');
 	    }
 	  }, {
@@ -27016,9 +27016,9 @@
 	  function Notemaker(props) {
 	    _classCallCheck(this, Notemaker);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Notemaker).call(this, props));
+	    // console.log('from notemaker constructor ', this.props.appEditorState);
 
-	    console.log('from notemaker constructor ', _this.props.appEditorState);
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Notemaker).call(this, props));
 
 	    _this.state = {
 	      editorState: _this.props.appEditorState || _draftJs.EditorState.createEmpty()
@@ -27092,7 +27092,7 @@
 	        }
 	      }
 
-	      console.log('from notemaker render', this.state.appEditorState);
+	      // console.log('from notemaker render',this.state.appEditorState);
 
 	      return _react2.default.createElement(
 	        'div',
@@ -44807,7 +44807,7 @@
 	        _react2.default.createElement(
 	          'ul',
 	          null,
-	          this.state.notes.map(function (note) {
+	          this.state.notes.reverse().map(function (note) {
 	            return _react2.default.createElement(_Noteentry2.default, { note: note, key: note._id, changeAppEditorStateAndCore: _this2.props.changeAppEditorStateAndCore });
 	            // return <li>{note._id}</li>
 	          })
