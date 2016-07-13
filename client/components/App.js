@@ -44,6 +44,7 @@ class App extends React.Component {
       //if just signed up, login as well
       this._postUser(username, password, '/login');
     }
+    this._changeCore(null, 'Notemaker');
   }
 
   _changeCore (event, str) {
