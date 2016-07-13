@@ -14,8 +14,9 @@ class Noteentry extends React.Component {
     this.onChange = (editorState) => this.setState({editorState});
   }
   render () {
+    console.log('from entry: ', EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.note.note)) ));
     return (
-      <Panel className="comment" onClick={() => {this.props.changeAppEditorStateAndCore(this.state.editorState)}}>
+      <Panel className="comment" onClick={() => {this.props.changeAppEditorStateAndCore(this.state.editorState)}} >
         <h4 className="username">{this.props.note.username}</h4>
         <Editor 
           editorState={this.state.editorState} 

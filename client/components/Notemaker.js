@@ -15,8 +15,10 @@ class Notemaker extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log('from notemaker constructor ', this.props.appEditorState);
+
     this.state = {
-      editorState: EditorState.createEmpty(),
+      editorState: this.props.appEditorState || EditorState.createEmpty(),
     };
 
     this.focus = () => this.refs.editor.focus();
@@ -77,6 +79,8 @@ class Notemaker extends React.Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
+
+    console.log('from notemaker render',this.state.appEditorState);
 
     return (
       <div className="RichEditor-root">

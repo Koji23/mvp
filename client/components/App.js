@@ -17,15 +17,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       core: 'Login', //default to login
-      loggedIn: false,
-      appEditorState: {}
+      loggedIn: true,
+      appEditorState: undefined
     }
   }
 
   _changeAppEditorStateAndCore (newEditorState) {
-    this.setState({
-      appEditorState: newEditorState,
-    })
+    this.setState({test: 'hiiiii'});
+    console.log("FROM APP ", this.state.test, newEditorState);
     this._changeCore(null, 'Notemaker');
   }
 
@@ -63,7 +62,7 @@ class App extends React.Component {
     } else if (this.state.core === 'Login') {
       main = <Login postUser={this._postUser.bind(this)}/>
     } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
-      main = <Notemaker />
+      main = <Notemaker appEditorState={this.state.appEditorState}/>
     }else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
       main = <PlainNotemaker />
     }else if (this.state.core === 'Notelist' && this.state.loggedIn) {

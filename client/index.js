@@ -21134,11 +21134,11 @@
 
 	var _Signup2 = _interopRequireDefault(_Signup);
 
-	var _Login = __webpack_require__(247);
+	var _Login = __webpack_require__(258);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _Notemaker = __webpack_require__(258);
+	var _Notemaker = __webpack_require__(259);
 
 	var _Notemaker2 = _interopRequireDefault(_Notemaker);
 
@@ -21168,8 +21168,8 @@
 
 	    _this.state = {
 	      core: 'Login', //default to login
-	      loggedIn: false,
-	      appEditorState: {}
+	      loggedIn: true,
+	      appEditorState: undefined
 	    };
 	    return _this;
 	  }
@@ -21177,9 +21177,8 @@
 	  _createClass(App, [{
 	    key: '_changeAppEditorStateAndCore',
 	    value: function _changeAppEditorStateAndCore(newEditorState) {
-	      this.setState({
-	        appEditorState: newEditorState
-	      });
+	      this.setState({ test: 'hiiiii' });
+	      console.log("FROM APP ", this.state.test, newEditorState);
 	      this._changeCore(null, 'Notemaker');
 	    }
 	  }, {
@@ -21218,7 +21217,7 @@
 	      } else if (this.state.core === 'Login') {
 	        main = _react2.default.createElement(_Login2.default, { postUser: this._postUser.bind(this) });
 	      } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
-	        main = _react2.default.createElement(_Notemaker2.default, null);
+	        main = _react2.default.createElement(_Notemaker2.default, { appEditorState: this.state.appEditorState });
 	      } else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_PlainNotemaker2.default, null);
 	      } else if (this.state.core === 'Notelist' && this.state.loggedIn) {
@@ -25533,31 +25532,31 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Panel = __webpack_require__(248);
+	var _Panel = __webpack_require__(247);
 
 	var _Panel2 = _interopRequireDefault(_Panel);
 
-	var _Well = __webpack_require__(249);
+	var _Well = __webpack_require__(248);
 
 	var _Well2 = _interopRequireDefault(_Well);
 
-	var _Form = __webpack_require__(250);
+	var _Form = __webpack_require__(249);
 
 	var _Form2 = _interopRequireDefault(_Form);
 
-	var _FormGroup = __webpack_require__(251);
+	var _FormGroup = __webpack_require__(250);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
-	var _FormControl = __webpack_require__(253);
+	var _FormControl = __webpack_require__(252);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _ControlLabel = __webpack_require__(257);
+	var _ControlLabel = __webpack_require__(256);
 
 	var _ControlLabel2 = _interopRequireDefault(_ControlLabel);
 
-	var _Button = __webpack_require__(259);
+	var _Button = __webpack_require__(257);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -25651,138 +25650,6 @@
 
 /***/ },
 /* 247 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Panel = __webpack_require__(248);
-
-	var _Panel2 = _interopRequireDefault(_Panel);
-
-	var _Well = __webpack_require__(249);
-
-	var _Well2 = _interopRequireDefault(_Well);
-
-	var _Form = __webpack_require__(250);
-
-	var _Form2 = _interopRequireDefault(_Form);
-
-	var _FormGroup = __webpack_require__(251);
-
-	var _FormGroup2 = _interopRequireDefault(_FormGroup);
-
-	var _FormControl = __webpack_require__(253);
-
-	var _FormControl2 = _interopRequireDefault(_FormControl);
-
-	var _ControlLabel = __webpack_require__(257);
-
-	var _ControlLabel2 = _interopRequireDefault(_ControlLabel);
-
-	var _Button = __webpack_require__(259);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Login = function (_React$Component) {
-	  _inherits(Login, _React$Component);
-
-	  function Login(props) {
-	    _classCallCheck(this, Login);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this, props));
-
-	    _this.state = {
-	      username: '',
-	      password: ''
-	    };
-	    return _this;
-	  }
-
-	  _createClass(Login, [{
-	    key: '_updateInput',
-	    value: function _updateInput(stateProperty, inputVal) {
-	      var options = {};
-	      options[stateProperty] = inputVal;
-	      this.setState(options);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      return _react2.default.createElement(
-	        _Panel2.default,
-	        null,
-	        _react2.default.createElement(
-	          _Well2.default,
-	          null,
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Login'
-	          ),
-	          _react2.default.createElement(
-	            'form',
-	            null,
-	            _react2.default.createElement(
-	              _FormGroup2.default,
-	              null,
-	              _react2.default.createElement(
-	                _ControlLabel2.default,
-	                null,
-	                'Username:'
-	              ),
-	              _react2.default.createElement(_FormControl2.default, { onChange: function onChange(event) {
-	                  _this2._updateInput('username', event.target.value);
-	                } }),
-	              _react2.default.createElement(
-	                _ControlLabel2.default,
-	                null,
-	                'Password:'
-	              ),
-	              _react2.default.createElement(_FormControl2.default, { onChange: function onChange(event) {
-	                  _this2._updateInput('password', event.target.value);
-	                } }),
-	              _react2.default.createElement(_FormControl2.default.Feedback, null)
-	            ),
-	            _react2.default.createElement(
-	              _Button2.default,
-	              { onClick: function onClick() {
-	                  _this2.props.postUser(_this2.state.username, _this2.state.password, '/login');
-	                } },
-	              'Submit'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Login;
-	}(_react2.default.Component);
-
-	exports.default = Login;
-
-/***/ },
-/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26053,7 +25920,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 249 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26109,7 +25976,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 250 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26193,7 +26060,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 251 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26218,7 +26085,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactPropTypesLibDeprecated = __webpack_require__(252);
+	var _reactPropTypesLibDeprecated = __webpack_require__(251);
 
 	var _reactPropTypesLibDeprecated2 = _interopRequireDefault(_reactPropTypesLibDeprecated);
 
@@ -26333,7 +26200,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 252 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26371,7 +26238,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 253 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -26406,11 +26273,11 @@
 
 	var _utilsBootstrapUtils = __webpack_require__(211);
 
-	var _FormControlFeedback = __webpack_require__(254);
+	var _FormControlFeedback = __webpack_require__(253);
 
 	var _FormControlFeedback2 = _interopRequireDefault(_FormControlFeedback);
 
-	var _FormControlStatic = __webpack_require__(256);
+	var _FormControlStatic = __webpack_require__(255);
 
 	var _FormControlStatic2 = _interopRequireDefault(_FormControlStatic);
 
@@ -26488,7 +26355,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 254 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26515,7 +26382,7 @@
 
 	var _utilsBootstrapUtils = __webpack_require__(211);
 
-	var _Glyphicon = __webpack_require__(255);
+	var _Glyphicon = __webpack_require__(254);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -26592,7 +26459,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 255 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26611,7 +26478,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactPropTypesLibDeprecated = __webpack_require__(252);
+	var _reactPropTypesLibDeprecated = __webpack_require__(251);
 
 	var _reactPropTypesLibDeprecated2 = _interopRequireDefault(_reactPropTypesLibDeprecated);
 
@@ -26658,7 +26525,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 256 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26730,7 +26597,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 257 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -26824,6 +26691,154 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _inherits = __webpack_require__(213)['default'];
+
+	var _classCallCheck = __webpack_require__(220)['default'];
+
+	var _extends = __webpack_require__(174)['default'];
+
+	var _interopRequireDefault = __webpack_require__(190)['default'];
+
+	exports.__esModule = true;
+
+	var _classnames = __webpack_require__(191);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactPropTypesLibElementType = __webpack_require__(192);
+
+	var _reactPropTypesLibElementType2 = _interopRequireDefault(_reactPropTypesLibElementType);
+
+	var _styleMaps = __webpack_require__(200);
+
+	var _utilsBootstrapUtils = __webpack_require__(211);
+
+	var _SafeAnchor = __webpack_require__(245);
+
+	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
+
+	var ButtonStyles = _styleMaps.State.values().concat(_styleMaps.DEFAULT, _styleMaps.PRIMARY, _styleMaps.LINK);
+
+	var types = ['button', 'reset', 'submit'];
+
+	var Button = (function (_React$Component) {
+	  _inherits(Button, _React$Component);
+
+	  function Button(props, context) {
+	    _classCallCheck(this, Button);
+
+	    _React$Component.call(this, props, context);
+	  }
+
+	  Button.prototype.render = function render() {
+	    var _extends2;
+
+	    var classes = this.props.navDropdown ? {} : _utilsBootstrapUtils.getClassSet(this.props);
+	    var renderFuncName = undefined;
+
+	    var blockClass = _utilsBootstrapUtils.prefix(this.props, 'block');
+
+	    classes = _extends((_extends2 = {
+	      active: this.props.active
+	    }, _extends2[blockClass] = this.props.block, _extends2), classes);
+
+	    if (this.props.navItem) {
+	      return this.renderNavItem(classes);
+	    }
+
+	    renderFuncName = this.props.href || this.props.target || this.props.navDropdown ? 'renderAnchor' : 'renderButton';
+
+	    return this[renderFuncName](classes);
+	  };
+
+	  Button.prototype.renderAnchor = function renderAnchor(classes) {
+	    var _props = this.props;
+	    var disabled = _props.disabled;
+	    var href = _props.href;
+
+	    classes.disabled = disabled;
+
+	    return _react2['default'].createElement(
+	      _SafeAnchor2['default'],
+	      _extends({}, this.props, {
+	        href: href || '#',
+	        className: _classnames2['default'](this.props.className, classes)
+	      }),
+	      this.props.children
+	    );
+	  };
+
+	  Button.prototype.renderButton = function renderButton(classes) {
+	    var Component = this.props.componentClass || 'button';
+
+	    return _react2['default'].createElement(
+	      Component,
+	      _extends({}, this.props, {
+	        type: this.props.type || 'button',
+	        className: _classnames2['default'](this.props.className, classes) }),
+	      this.props.children
+	    );
+	  };
+
+	  Button.prototype.renderNavItem = function renderNavItem(classes) {
+	    var liClasses = {
+	      active: this.props.active
+	    };
+
+	    return _react2['default'].createElement(
+	      'li',
+	      { className: _classnames2['default'](liClasses) },
+	      this.renderAnchor(classes)
+	    );
+	  };
+
+	  return Button;
+	})(_react2['default'].Component);
+
+	Button.propTypes = {
+	  active: _react2['default'].PropTypes.bool,
+	  disabled: _react2['default'].PropTypes.bool,
+	  block: _react2['default'].PropTypes.bool,
+	  navItem: _react2['default'].PropTypes.bool,
+	  navDropdown: _react2['default'].PropTypes.bool,
+	  onClick: _react2['default'].PropTypes.func,
+	  /**
+	   * You can use a custom element for this component
+	   */
+	  componentClass: _reactPropTypesLibElementType2['default'],
+	  href: _react2['default'].PropTypes.string,
+	  target: _react2['default'].PropTypes.string,
+	  /**
+	   * Defines HTML button type Attribute
+	   * @type {("button"|"reset"|"submit")}
+	   * @defaultValue 'button'
+	   */
+	  type: _react2['default'].PropTypes.oneOf(types)
+	};
+
+	Button.defaultProps = {
+	  active: false,
+	  block: false,
+	  disabled: false,
+	  navItem: false,
+	  navDropdown: false
+	};
+
+	Button.types = types;
+
+	exports['default'] = _utilsBootstrapUtils.bsStyles(ButtonStyles, _styleMaps.DEFAULT, _utilsBootstrapUtils.bsSizes([_styleMaps.Sizes.LARGE, _styleMaps.Sizes.SMALL, _styleMaps.Sizes.XSMALL], _utilsBootstrapUtils.bsClass('btn', Button)));
+	module.exports = exports['default'];
+
+/***/ },
 /* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26839,7 +26854,139 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(259);
+	var _Panel = __webpack_require__(247);
+
+	var _Panel2 = _interopRequireDefault(_Panel);
+
+	var _Well = __webpack_require__(248);
+
+	var _Well2 = _interopRequireDefault(_Well);
+
+	var _Form = __webpack_require__(249);
+
+	var _Form2 = _interopRequireDefault(_Form);
+
+	var _FormGroup = __webpack_require__(250);
+
+	var _FormGroup2 = _interopRequireDefault(_FormGroup);
+
+	var _FormControl = __webpack_require__(252);
+
+	var _FormControl2 = _interopRequireDefault(_FormControl);
+
+	var _ControlLabel = __webpack_require__(256);
+
+	var _ControlLabel2 = _interopRequireDefault(_ControlLabel);
+
+	var _Button = __webpack_require__(257);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Login = function (_React$Component) {
+	  _inherits(Login, _React$Component);
+
+	  function Login(props) {
+	    _classCallCheck(this, Login);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this, props));
+
+	    _this.state = {
+	      username: '',
+	      password: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Login, [{
+	    key: '_updateInput',
+	    value: function _updateInput(stateProperty, inputVal) {
+	      var options = {};
+	      options[stateProperty] = inputVal;
+	      this.setState(options);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        _Panel2.default,
+	        null,
+	        _react2.default.createElement(
+	          _Well2.default,
+	          null,
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Login'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(
+	              _FormGroup2.default,
+	              null,
+	              _react2.default.createElement(
+	                _ControlLabel2.default,
+	                null,
+	                'Username:'
+	              ),
+	              _react2.default.createElement(_FormControl2.default, { onChange: function onChange(event) {
+	                  _this2._updateInput('username', event.target.value);
+	                } }),
+	              _react2.default.createElement(
+	                _ControlLabel2.default,
+	                null,
+	                'Password:'
+	              ),
+	              _react2.default.createElement(_FormControl2.default, { onChange: function onChange(event) {
+	                  _this2._updateInput('password', event.target.value);
+	                } }),
+	              _react2.default.createElement(_FormControl2.default.Feedback, null)
+	            ),
+	            _react2.default.createElement(
+	              _Button2.default,
+	              { onClick: function onClick() {
+	                  _this2.props.postUser(_this2.state.username, _this2.state.password, '/login');
+	                } },
+	              'Submit'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Login;
+	}(_react2.default.Component);
+
+	exports.default = Login;
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Button = __webpack_require__(257);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -26871,8 +27018,10 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Notemaker).call(this, props));
 
+	    console.log('from notemaker constructor ', _this.props.appEditorState);
+
 	    _this.state = {
-	      editorState: _draftJs.EditorState.createEmpty()
+	      editorState: _this.props.appEditorState || _draftJs.EditorState.createEmpty()
 	    };
 
 	    _this.focus = function () {
@@ -26942,6 +27091,8 @@
 	          className += ' RichEditor-hidePlaceholder';
 	        }
 	      }
+
+	      console.log('from notemaker render', this.state.appEditorState);
 
 	      return _react2.default.createElement(
 	        'div',
@@ -27108,154 +27259,6 @@
 	//     </Well>
 	//   </Panel>
 	// );
-
-/***/ },
-/* 259 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _inherits = __webpack_require__(213)['default'];
-
-	var _classCallCheck = __webpack_require__(220)['default'];
-
-	var _extends = __webpack_require__(174)['default'];
-
-	var _interopRequireDefault = __webpack_require__(190)['default'];
-
-	exports.__esModule = true;
-
-	var _classnames = __webpack_require__(191);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactPropTypesLibElementType = __webpack_require__(192);
-
-	var _reactPropTypesLibElementType2 = _interopRequireDefault(_reactPropTypesLibElementType);
-
-	var _styleMaps = __webpack_require__(200);
-
-	var _utilsBootstrapUtils = __webpack_require__(211);
-
-	var _SafeAnchor = __webpack_require__(245);
-
-	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
-
-	var ButtonStyles = _styleMaps.State.values().concat(_styleMaps.DEFAULT, _styleMaps.PRIMARY, _styleMaps.LINK);
-
-	var types = ['button', 'reset', 'submit'];
-
-	var Button = (function (_React$Component) {
-	  _inherits(Button, _React$Component);
-
-	  function Button(props, context) {
-	    _classCallCheck(this, Button);
-
-	    _React$Component.call(this, props, context);
-	  }
-
-	  Button.prototype.render = function render() {
-	    var _extends2;
-
-	    var classes = this.props.navDropdown ? {} : _utilsBootstrapUtils.getClassSet(this.props);
-	    var renderFuncName = undefined;
-
-	    var blockClass = _utilsBootstrapUtils.prefix(this.props, 'block');
-
-	    classes = _extends((_extends2 = {
-	      active: this.props.active
-	    }, _extends2[blockClass] = this.props.block, _extends2), classes);
-
-	    if (this.props.navItem) {
-	      return this.renderNavItem(classes);
-	    }
-
-	    renderFuncName = this.props.href || this.props.target || this.props.navDropdown ? 'renderAnchor' : 'renderButton';
-
-	    return this[renderFuncName](classes);
-	  };
-
-	  Button.prototype.renderAnchor = function renderAnchor(classes) {
-	    var _props = this.props;
-	    var disabled = _props.disabled;
-	    var href = _props.href;
-
-	    classes.disabled = disabled;
-
-	    return _react2['default'].createElement(
-	      _SafeAnchor2['default'],
-	      _extends({}, this.props, {
-	        href: href || '#',
-	        className: _classnames2['default'](this.props.className, classes)
-	      }),
-	      this.props.children
-	    );
-	  };
-
-	  Button.prototype.renderButton = function renderButton(classes) {
-	    var Component = this.props.componentClass || 'button';
-
-	    return _react2['default'].createElement(
-	      Component,
-	      _extends({}, this.props, {
-	        type: this.props.type || 'button',
-	        className: _classnames2['default'](this.props.className, classes) }),
-	      this.props.children
-	    );
-	  };
-
-	  Button.prototype.renderNavItem = function renderNavItem(classes) {
-	    var liClasses = {
-	      active: this.props.active
-	    };
-
-	    return _react2['default'].createElement(
-	      'li',
-	      { className: _classnames2['default'](liClasses) },
-	      this.renderAnchor(classes)
-	    );
-	  };
-
-	  return Button;
-	})(_react2['default'].Component);
-
-	Button.propTypes = {
-	  active: _react2['default'].PropTypes.bool,
-	  disabled: _react2['default'].PropTypes.bool,
-	  block: _react2['default'].PropTypes.bool,
-	  navItem: _react2['default'].PropTypes.bool,
-	  navDropdown: _react2['default'].PropTypes.bool,
-	  onClick: _react2['default'].PropTypes.func,
-	  /**
-	   * You can use a custom element for this component
-	   */
-	  componentClass: _reactPropTypesLibElementType2['default'],
-	  href: _react2['default'].PropTypes.string,
-	  target: _react2['default'].PropTypes.string,
-	  /**
-	   * Defines HTML button type Attribute
-	   * @type {("button"|"reset"|"submit")}
-	   * @defaultValue 'button'
-	   */
-	  type: _react2['default'].PropTypes.oneOf(types)
-	};
-
-	Button.defaultProps = {
-	  active: false,
-	  block: false,
-	  disabled: false,
-	  navItem: false,
-	  navDropdown: false
-	};
-
-	Button.types = types;
-
-	exports['default'] = _utilsBootstrapUtils.bsStyles(ButtonStyles, _styleMaps.DEFAULT, _utilsBootstrapUtils.bsSizes([_styleMaps.Sizes.LARGE, _styleMaps.Sizes.SMALL, _styleMaps.Sizes.XSMALL], _utilsBootstrapUtils.bsClass('btn', Button)));
-	module.exports = exports['default'];
 
 /***/ },
 /* 260 */
@@ -44608,11 +44611,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Panel = __webpack_require__(248);
+	var _Panel = __webpack_require__(247);
 
 	var _Panel2 = _interopRequireDefault(_Panel);
 
-	var _Well = __webpack_require__(249);
+	var _Well = __webpack_require__(248);
 
 	var _Well2 = _interopRequireDefault(_Well);
 
@@ -44738,15 +44741,15 @@
 
 	var _Noteentry2 = _interopRequireDefault(_Noteentry);
 
-	var _Panel = __webpack_require__(248);
+	var _Panel = __webpack_require__(247);
 
 	var _Panel2 = _interopRequireDefault(_Panel);
 
-	var _Well = __webpack_require__(249);
+	var _Well = __webpack_require__(248);
 
 	var _Well2 = _interopRequireDefault(_Well);
 
-	var _Button = __webpack_require__(259);
+	var _Button = __webpack_require__(257);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -44855,11 +44858,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Panel = __webpack_require__(248);
+	var _Panel = __webpack_require__(247);
 
 	var _Panel2 = _interopRequireDefault(_Panel);
 
-	var _Well = __webpack_require__(249);
+	var _Well = __webpack_require__(248);
 
 	var _Well2 = _interopRequireDefault(_Well);
 
@@ -44899,6 +44902,7 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      console.log('from entry: ', _draftJs.EditorState.createWithContent((0, _draftJs.convertFromRaw)(JSON.parse(this.props.note.note))));
 	      return _react2.default.createElement(
 	        _Panel2.default,
 	        { className: 'comment', onClick: function onClick() {
