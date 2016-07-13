@@ -21167,7 +21167,8 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
 	    _this.state = {
-	      core: 'Notemaker'
+	      core: 'Login',
+	      loggedIn: false
 	    };
 	    return _this;
 	  }
@@ -21175,6 +21176,25 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {}
+	  }, {
+	    key: '_postUser',
+	    value: function _postUser(username, password, route) {
+	      var options = {
+	        username: username,
+	        password: password
+	      };
+	      console.log(route);
+	      postData(options, route, function (response) {
+	        // DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
+	        // console.log('app state now: ', response);
+	        this.setState({ loggedIn: response });
+	      }.bind(this));
+	      // console.log(this, 'app state now officially ', this.state.loggedIn);
+	      if (route === '/signup') {
+	        //if just signed up, login as well
+	        this._postUser(username, password, '/login');
+	      }
+	    }
 	  }, {
 	    key: '_changeCore',
 	    value: function _changeCore(event, str) {
@@ -21188,14 +21208,14 @@
 	    value: function render() {
 	      var main;
 	      if (this.state.core === 'Signup') {
-	        main = _react2.default.createElement(_Signup2.default, null);
+	        main = _react2.default.createElement(_Signup2.default, { postUser: this._postUser.bind(this) });
 	      } else if (this.state.core === 'Login') {
-	        main = _react2.default.createElement(_Login2.default, null);
-	      } else if (this.state.core === 'Notemaker') {
+	        main = _react2.default.createElement(_Login2.default, { postUser: this._postUser.bind(this) });
+	      } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_Notemaker2.default, null);
-	      } else if (this.state.core === 'PlainNotemaker') {
+	      } else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_PlainNotemaker2.default, null);
-	      } else if (this.state.core === 'Notelist') {
+	      } else if (this.state.core === 'Notelist' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_Notelist2.default, null); //add props here
 	      }
 
@@ -21220,6 +21240,23 @@
 	}(_react2.default.Component);
 
 	exports.default = App;
+
+
+	var postData = function postData(note, route, cb) {
+	  return $.ajax({
+	    method: "POST",
+	    url: "http://localhost:3000/users" + route,
+	    data: JSON.stringify(note),
+	    contentType: 'application/json',
+	    success: function success(data) {
+	      console.log('Post Success!', data);
+	      cb(data);
+	    },
+	    error: function error(data) {
+	      console.error('Notemaker: Failed to send note', data);
+	    }
+	  });
+	};
 
 /***/ },
 /* 173 */
@@ -25549,17 +25586,6 @@
 	      this.setState(options);
 	    }
 	  }, {
-	    key: '_postUser',
-	    value: function _postUser() {
-	      var options = {
-	        username: this.state.username,
-	        password: this.state.password
-	      };
-	      postData(options, function (response) {
-	        //DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -25601,7 +25627,9 @@
 	            ),
 	            _react2.default.createElement(
 	              _Button2.default,
-	              { onClick: this._postUser.bind(this) },
+	              { onClick: function onClick() {
+	                  _this2.props.postUser(_this2.state.username, _this2.state.password, '/signup');
+	                } },
 	              'Submit'
 	            )
 	          )
@@ -25614,24 +25642,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Signup;
-
-	//Jquery ajax
-
-	var postData = function postData(note, cb) {
-	  return $.ajax({
-	    method: "POST",
-	    url: "http://localhost:3000/users/signup",
-	    data: JSON.stringify(note),
-	    contentType: 'application/json',
-	    success: function success(data) {
-	      console.log('Post Success!', data);
-	      cb(data);
-	    },
-	    error: function error(data) {
-	      console.error('Notemaker: Failed to send note', data);
-	    }
-	  });
-	};
 
 /***/ },
 /* 247 */
@@ -25708,17 +25718,6 @@
 	      this.setState(options);
 	    }
 	  }, {
-	    key: '_postUser',
-	    value: function _postUser() {
-	      var options = {
-	        username: this.state.username,
-	        password: this.state.password
-	      };
-	      postData(options, function (response) {
-	        //DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -25760,7 +25759,9 @@
 	            ),
 	            _react2.default.createElement(
 	              _Button2.default,
-	              { onClick: this._postUser.bind(this) },
+	              { onClick: function onClick() {
+	                  _this2.props.postUser(_this2.state.username, _this2.state.password, '/login');
+	                } },
 	              'Submit'
 	            )
 	          )
@@ -25773,24 +25774,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Login;
-
-	//Jquery ajax
-
-	var postData = function postData(note, cb) {
-	  return $.ajax({
-	    method: "POST",
-	    url: "http://localhost:3000/users/login",
-	    data: JSON.stringify(note),
-	    contentType: 'application/json',
-	    success: function success(data) {
-	      console.log('Post Success!', data);
-	      cb(data);
-	    },
-	    error: function error(data) {
-	      console.error('Notemaker: Failed to send note', data);
-	    }
-	  });
-	};
 
 /***/ },
 /* 248 */

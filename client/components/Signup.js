@@ -24,16 +24,6 @@ class Signup extends React.Component {
     this.setState(options);
   }
 
-  _postUser () {
-    var options = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    postData(options, function(response){
-      //DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
-    });
-  }
-
   render () {
     return (
       <Panel >
@@ -47,7 +37,7 @@ class Signup extends React.Component {
               <FormControl onChange={(event) =>{this._updateInput('password', event.target.value)} }/>
               <FormControl.Feedback />
             </FormGroup>
-            <Button  onClick={this._postUser.bind(this)}>Submit</Button>
+            <Button  onClick={() => {this.props.postUser(this.state.username, this.state.password, '/signup')}}>Submit</Button>
           </form>
         </Well>
       </Panel>
@@ -58,19 +48,3 @@ class Signup extends React.Component {
 
 export default Signup;
 
-//Jquery ajax
-var postData = function(note, cb){
-  return $.ajax({
-    method: "POST",
-    url: "http://localhost:3000/users/signup",
-    data: JSON.stringify(note),
-    contentType: 'application/json',
-    success: function(data){
-      console.log('Post Success!', data);
-      cb(data);
-    },
-    error: function(data){
-      console.error('Notemaker: Failed to send note', data);
-    }
-  })
-};

@@ -16,12 +16,31 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      core: 'Notemaker'
+      core: 'Login',
+      loggedIn: false
     }
   }
 
   componentDidMount () {
 
+  }
+
+  _postUser (username, password, route) {
+    var options = {
+      username: username,
+      password: password
+    };
+    console.log(route);
+    postData(options, route, function(response){
+      // DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
+      // console.log('app state now: ', response);
+      this.setState({loggedIn: response});
+    }.bind(this));
+    // console.log(this, 'app state now officially ', this.state.loggedIn);
+    if(route === '/signup') {
+      //if just signed up, login as well
+      this._postUser(username, password, '/login');
+    }
   }
 
   _changeCore (event, str) {
@@ -34,14 +53,14 @@ class App extends React.Component {
   render () {
     var main;
     if(this.state.core === 'Signup'){
-      main = <Signup />
+      main = <Signup postUser={this._postUser.bind(this)}/>
     } else if (this.state.core === 'Login') {
-      main = <Login />
-    } else if (this.state.core === 'Notemaker') {
+      main = <Login postUser={this._postUser.bind(this)}/>
+    } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
       main = <Notemaker />
-    }else if (this.state.core === 'PlainNotemaker') {
+    }else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
       main = <PlainNotemaker />
-    }else if (this.state.core === 'Notelist') {
+    }else if (this.state.core === 'Notelist' && this.state.loggedIn) {
       main = <Notelist /> //add props here
     }
 
@@ -59,3 +78,21 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+var postData = function(note, route, cb){
+  return $.ajax({
+    method: "POST",
+    url: "http://localhost:3000/users" + route,
+    data: JSON.stringify(note),
+    contentType: 'application/json',
+    success: function(data){
+      console.log('Post Success!', data);
+      cb(data);
+    },
+    error: function(data){
+      console.error('Notemaker: Failed to send note', data);
+    }
+  })
+};
