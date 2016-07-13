@@ -15,7 +15,7 @@ class Noteentry extends React.Component {
   }
   render () {
     return (
-      <Panel className="comment">
+      <Panel className="comment" onClick={() => {this.props.changeAppEditorStateAndCore(this.state.editorState)}}>
         <h4 className="username">{this.props.note.username}</h4>
         <Editor 
           editorState={this.state.editorState} 

@@ -16,13 +16,17 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      core: 'Login',
-      loggedIn: false
+      core: 'Login', //default to login
+      loggedIn: false,
+      appEditorState: {}
     }
   }
 
-  componentDidMount () {
-
+  _changeAppEditorStateAndCore (newEditorState) {
+    this.setState({
+      appEditorState: newEditorState,
+    })
+    this._changeCore(null, 'Notemaker');
   }
 
   _postUser (username, password, route) {
@@ -50,6 +54,8 @@ class App extends React.Component {
     // console.log('after setState', this.state.core);
   }
 
+
+
   render () {
     var main;
     if(this.state.core === 'Signup'){
@@ -61,7 +67,7 @@ class App extends React.Component {
     }else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
       main = <PlainNotemaker />
     }else if (this.state.core === 'Notelist' && this.state.loggedIn) {
-      main = <Notelist /> //add props here
+      main = <Notelist changeAppEditorStateAndCore={this._changeAppEditorStateAndCore.bind(this)}/> //add props here
     }
 
     return (

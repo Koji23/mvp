@@ -21167,15 +21167,21 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
 
 	    _this.state = {
-	      core: 'Login',
-	      loggedIn: false
+	      core: 'Login', //default to login
+	      loggedIn: false,
+	      appEditorState: {}
 	    };
 	    return _this;
 	  }
 
 	  _createClass(App, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {}
+	    key: '_changeAppEditorStateAndCore',
+	    value: function _changeAppEditorStateAndCore(newEditorState) {
+	      this.setState({
+	        appEditorState: newEditorState
+	      });
+	      this._changeCore(null, 'Notemaker');
+	    }
 	  }, {
 	    key: '_postUser',
 	    value: function _postUser(username, password, route) {
@@ -21216,7 +21222,7 @@
 	      } else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_PlainNotemaker2.default, null);
 	      } else if (this.state.core === 'Notelist' && this.state.loggedIn) {
-	        main = _react2.default.createElement(_Notelist2.default, null); //add props here
+	        main = _react2.default.createElement(_Notelist2.default, { changeAppEditorStateAndCore: this._changeAppEditorStateAndCore.bind(this) }); //add props here
 	      }
 
 	      return _react2.default.createElement(
@@ -44785,6 +44791,8 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        _Well2.default,
 	        { className: 'noteList' },
@@ -44797,7 +44805,7 @@
 	          'ul',
 	          null,
 	          this.state.notes.map(function (note) {
-	            return _react2.default.createElement(_Noteentry2.default, { note: note, key: note._id });
+	            return _react2.default.createElement(_Noteentry2.default, { note: note, key: note._id, changeAppEditorStateAndCore: _this2.props.changeAppEditorStateAndCore });
 	            // return <li>{note._id}</li>
 	          })
 	        ),
@@ -44889,9 +44897,13 @@
 	  _createClass(Noteentry, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        _Panel2.default,
-	        { className: 'comment' },
+	        { className: 'comment', onClick: function onClick() {
+	            _this2.props.changeAppEditorStateAndCore(_this2.state.editorState);
+	          } },
 	        _react2.default.createElement(
 	          'h4',
 	          { className: 'username' },

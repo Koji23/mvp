@@ -32,7 +32,7 @@ class Notelist extends React.Component {
         <h1 >Notes:</h1>
         <ul>
           {this.state.notes.map((note)=>{
-            return <Noteentry note={note} key={note._id}/>
+            return <Noteentry note={note} key={note._id} changeAppEditorStateAndCore={this.props.changeAppEditorStateAndCore}/>
             // return <li>{note._id}</li>
           })}
         </ul>
