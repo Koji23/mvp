@@ -5,6 +5,7 @@ module.exports.addNote = function(req, res, next) {
   // console.log('///////////////', req.body);
   notesModel.create(req.body, function(err, data){
     if(err) throw err;
+    res.send(true);
     console.log(data);
   });
 };

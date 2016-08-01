@@ -62,8 +62,11 @@ class Notemaker extends React.Component {
       username: this.props.username,
       note: JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
     };
+    var context = this;
     postNote(options, function(d){
       console.log(d);
+      //change core
+      console.log(context.props.changeCore(null, 'Notelist'));
     });
   }
 

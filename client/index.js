@@ -21220,7 +21220,7 @@
 	      } else if (this.state.core === 'Login') {
 	        main = _react2.default.createElement(_Login2.default, { postUser: this._postUser.bind(this) });
 	      } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
-	        main = _react2.default.createElement(_Notemaker2.default, { username: this.state.username, appEditorState: this.state.appEditorState });
+	        main = _react2.default.createElement(_Notemaker2.default, { username: this.state.username, appEditorState: this.state.appEditorState, changeCore: this._changeCore.bind(this) });
 	      } else if (this.state.core === 'Notelist' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_Notelist2.default, { username: this.state.username, changeAppEditorStateAndCore: this._changeAppEditorStateAndCore.bind(this) }); //add props here
 	      }
@@ -21231,7 +21231,7 @@
 	        _react2.default.createElement(
 	          _Row2.default,
 	          { className: 'show-grid' },
-	          _react2.default.createElement(_Navigation2.default, { changeCore: this._changeCore.bind(this), loggedIn: this.state.loggedIn })
+	          _react2.default.createElement(_Navigation2.default, { changeCore: this._changeCore.bind(this), loggedIn: this.state.loggedIn, username: this.state.username })
 	        ),
 	        _react2.default.createElement(
 	          _Row2.default,
@@ -22306,7 +22306,8 @@
 	      _react2.default.createElement(
 	        'a',
 	        { href: '#' },
-	        'Note Taker'
+	        'Note Taker: ',
+	        props.username
 	      )
 	    ),
 	    _react2.default.createElement(
@@ -27066,8 +27067,11 @@
 	        username: this.props.username,
 	        note: JSON.stringify((0, _draftJs.convertToRaw)(this.state.editorState.getCurrentContent()))
 	      };
+	      var context = this;
 	      postNote(options, function (d) {
 	        console.log(d);
+	        //change core
+	        console.log(context.props.changeCore(null, 'Notelist'));
 	      });
 	    }
 	  }, {

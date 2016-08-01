@@ -66,7 +66,7 @@ class App extends React.Component {
     } else if (this.state.core === 'Login') {
       main = <Login postUser={this._postUser.bind(this)}/>
     } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
-      main = <Notemaker username={this.state.username} appEditorState={this.state.appEditorState}/>
+      main = <Notemaker username={this.state.username} appEditorState={this.state.appEditorState} changeCore={this._changeCore.bind(this)}/>
     }else if (this.state.core === 'Notelist' && this.state.loggedIn) {
       main = <Notelist username={this.state.username} changeAppEditorStateAndCore={this._changeAppEditorStateAndCore.bind(this)}/> //add props here
     }
@@ -74,7 +74,7 @@ class App extends React.Component {
     return (
       <Grid>
         <Row className="show-grid">
-          <Navigation changeCore={this._changeCore.bind(this)} loggedIn={this.state.loggedIn}/>
+          <Navigation changeCore={this._changeCore.bind(this)} loggedIn={this.state.loggedIn} username={this.state.username}/>
         </Row>
         <Row>
           {main}
