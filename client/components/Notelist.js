@@ -22,6 +22,9 @@ class Notelist extends React.Component {
   _getNotes () {
     var context = this;
     getMessages(function(data){
+      data = data.filter(function(note){
+        return note.username === context.props.username;
+      })
       context.setState({notes: data});
     });
   }

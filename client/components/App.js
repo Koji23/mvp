@@ -18,7 +18,8 @@ class App extends React.Component {
     this.state = {
       core: 'Login', //default to login
       loggedIn: false,
-      appEditorState: undefined
+      appEditorState: undefined,
+      username: ''
     }
   }
 
@@ -40,8 +41,10 @@ class App extends React.Component {
       console.log("@@@", route);
       this.setState({
         loggedIn: response,
-        core: 'Notemaker'
+        core: 'Notemaker',
+        username: username
       });
+      console.log(username);
     }.bind(this));
     // console.log(this, 'app state now officially ', this.state.loggedIn);
     
@@ -63,15 +66,15 @@ class App extends React.Component {
     } else if (this.state.core === 'Login') {
       main = <Login postUser={this._postUser.bind(this)}/>
     } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
-      main = <Notemaker appEditorState={this.state.appEditorState}/>
+      main = <Notemaker username={this.state.username} appEditorState={this.state.appEditorState}/>
     }else if (this.state.core === 'Notelist' && this.state.loggedIn) {
-      main = <Notelist changeAppEditorStateAndCore={this._changeAppEditorStateAndCore.bind(this)}/> //add props here
+      main = <Notelist username={this.state.username} changeAppEditorStateAndCore={this._changeAppEditorStateAndCore.bind(this)}/> //add props here
     }
 
     return (
       <Grid>
         <Row className="show-grid">
-          <Navigation changeCore={this._changeCore.bind(this)}/>
+          <Navigation changeCore={this._changeCore.bind(this)} loggedIn={this.state.loggedIn}/>
         </Row>
         <Row>
           {main}
