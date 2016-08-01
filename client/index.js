@@ -21168,7 +21168,7 @@
 
 	    _this.state = {
 	      core: 'Login', //default to login
-	      loggedIn: false,
+	      loggedIn: true,
 	      appEditorState: undefined
 	    };
 	    return _this;
@@ -21199,7 +21199,6 @@
 	        //if just signed up, login as well
 	        this._postUser(username, password, '/login');
 	      }
-	      this._changeCore(null, 'Notemaker');
 	    }
 	  }, {
 	    key: '_changeCore',
@@ -21219,8 +21218,6 @@
 	        main = _react2.default.createElement(_Login2.default, { postUser: this._postUser.bind(this) });
 	      } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_Notemaker2.default, { appEditorState: this.state.appEditorState });
-	      } else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
-	        main = _react2.default.createElement(_PlainNotemaker2.default, null);
 	      } else if (this.state.core === 'Notelist' && this.state.loggedIn) {
 	        main = _react2.default.createElement(_Notelist2.default, { changeAppEditorStateAndCore: this._changeAppEditorStateAndCore.bind(this) }); //add props here
 	      }
@@ -22336,13 +22333,6 @@
 	      _react2.default.createElement(
 	        _NavItem2.default,
 	        { eventKey: 4, href: '#', onClick: function onClick(event) {
-	            props.changeCore(event, 'PlainNotemaker');
-	          } },
-	        'Plain Notes...'
-	      ),
-	      _react2.default.createElement(
-	        _NavItem2.default,
-	        { eventKey: 5, href: '#', onClick: function onClick(event) {
 	            props.changeCore(event, 'Notelist');
 	          } },
 	        'Note List'

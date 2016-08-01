@@ -17,7 +17,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       core: 'Login', //default to login
-      loggedIn: false,
+      loggedIn: true,
       appEditorState: undefined
     }
   }
@@ -44,7 +44,6 @@ class App extends React.Component {
       //if just signed up, login as well
       this._postUser(username, password, '/login');
     }
-    this._changeCore(null, 'Notemaker');
   }
 
   _changeCore (event, str) {
@@ -64,8 +63,6 @@ class App extends React.Component {
       main = <Login postUser={this._postUser.bind(this)}/>
     } else if (this.state.core === 'Notemaker' && this.state.loggedIn) {
       main = <Notemaker appEditorState={this.state.appEditorState}/>
-    }else if (this.state.core === 'PlainNotemaker' && this.state.loggedIn) {
-      main = <PlainNotemaker />
     }else if (this.state.core === 'Notelist' && this.state.loggedIn) {
       main = <Notelist changeAppEditorStateAndCore={this._changeAppEditorStateAndCore.bind(this)}/> //add props here
     }

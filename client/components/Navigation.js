@@ -13,8 +13,7 @@ var Navigation = (props) => (
       <NavItem eventKey={1} href="#" onClick={(event) => { props.changeCore(event, 'Signup') }}>Signup</NavItem>
       <NavItem eventKey={2} href="#" onClick={(event) => { props.changeCore(event, 'Login') }}>Login</NavItem>
       <NavItem eventKey={3} href="#" onClick={(event) => { props.changeCore(event, 'Notemaker') }}>Notes!</NavItem>
-      <NavItem eventKey={4} href="#" onClick={(event) => { props.changeCore(event, 'PlainNotemaker') }}>Plain Notes...</NavItem>
-      <NavItem eventKey={5} href="#" onClick={(event) => { props.changeCore(event, 'Notelist') }}>Note List</NavItem>
+      <NavItem eventKey={4} href="#" onClick={(event) => { props.changeCore(event, 'Notelist') }}>Note List</NavItem>
 
     </Nav>
   </Navbar>
