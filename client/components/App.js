@@ -17,7 +17,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       core: 'Login', //default to login
-      loggedIn: true,
+      loggedIn: false,
       appEditorState: undefined
     }
   }
@@ -33,17 +33,18 @@ class App extends React.Component {
       username: username,
       password: password
     };
-    console.log(route);
+    console.log(route, options);
     postData(options, route, function(response){
       // DO SOME STUFF AFTER SIGN UP!!!!!!!!!!!!!
       // console.log('app state now: ', response);
-      this.setState({loggedIn: response});
+      console.log("@@@", route);
+      this.setState({
+        loggedIn: response,
+        core: 'Notemaker'
+      });
     }.bind(this));
     // console.log(this, 'app state now officially ', this.state.loggedIn);
-    if(route === '/signup') {
-      //if just signed up, login as well
-      this._postUser(username, password, '/login');
-    }
+    
   }
 
   _changeCore (event, str) {
